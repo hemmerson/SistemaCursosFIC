@@ -39,6 +39,11 @@ public class Celular implements Serializable {
         this.estudante = estudante;
     }
 
+    public Celular(String numero, Estudante estudante) {
+        this.numero = numero;
+        this.estudante = estudante;
+    }
+
     public Long getId() {
         return id;
     }
