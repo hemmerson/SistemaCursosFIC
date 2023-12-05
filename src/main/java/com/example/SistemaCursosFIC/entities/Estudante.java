@@ -101,10 +101,6 @@ public class Estudante implements Serializable {
         return celulares;
     }
 
-    public void setCelulares(Celular celular) {
-        this.celulares.add(celular);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
