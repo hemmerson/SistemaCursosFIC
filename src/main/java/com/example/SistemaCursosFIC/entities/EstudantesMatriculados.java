@@ -1,4 +1,4 @@
-package com.example.SistemaCursosFIC.model.entity;
+package com.example.SistemaCursosFIC.entities;
 
 import java.time.LocalDate;
 import java.util.List;

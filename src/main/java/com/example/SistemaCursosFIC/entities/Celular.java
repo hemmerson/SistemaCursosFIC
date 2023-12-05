@@ -1,12 +1,28 @@
-package com.example.SistemaCursosFIC.model.entity;
+package com.example.SistemaCursosFIC.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 /**
  * @author "Hemmerson Luis Barros da Rosa"
  * on date 03/12/2023
  */
-public class Celular {
+
+@Entity
+@Table(name = "tb_celular")
+public class Celular implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numero;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "estudante_id")
     private Estudante estudante;
 
     public Celular() {
