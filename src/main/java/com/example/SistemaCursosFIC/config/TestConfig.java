@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -21,9 +22,8 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        Estudante e1 = new Estudante("Hemmerson", "2023221234", LocalDate.now(), "806 Sul","hemmerson@email.com");
-        Estudante e2 = new Estudante("Thaize", "2023221214", LocalDate.now(), "806 Sul","thaize@email.com");
+        Estudante e1 = new Estudante("Hemmerson", "2023221234", LocalDate.parse("1989-05-04"), "806 Sul","hemmerson@email.com");
+        Estudante e2 = new Estudante("Thaize", "2023221214", LocalDate.parse("1989-11-01"), "806 Sul","thaize@email.com");
 
 
         estudanteRepository.saveAll(Arrays.asList(e1,e2));
