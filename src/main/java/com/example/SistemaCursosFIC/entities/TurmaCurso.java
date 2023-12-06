@@ -29,10 +29,7 @@ public class TurmaCurso implements Serializable {
     private LocalDate inicioMatriculas;
     private LocalDate fimMatriculas;
 
-    @ManyToMany
-    @JoinTable(name = "turmas_matriculados",
-            joinColumns = @JoinColumn(name = "turma_id"),
-            inverseJoinColumns = @JoinColumn(name = "matriculado_id"))
+    @OneToMany(mappedBy = "id.turma")
     private List<EstudantesMatriculados> matriculados = new ArrayList<>();
 
     @ManyToOne

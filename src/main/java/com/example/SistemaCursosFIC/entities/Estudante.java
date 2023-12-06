@@ -31,7 +31,7 @@ public class Estudante implements Serializable {
     private List<Celular> celulares = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "estudanteMatriculado")
+    @OneToMany(mappedBy = "id.estudante")
     private List<EstudantesMatriculados> matriculas = new ArrayList<>();
 
     public Estudante() {
