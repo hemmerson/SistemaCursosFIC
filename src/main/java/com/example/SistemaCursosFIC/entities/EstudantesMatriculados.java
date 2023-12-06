@@ -1,9 +1,8 @@
 package com.example.SistemaCursosFIC.entities;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,13 @@ import java.util.Objects;
  * @author "Hemmerson Luis Barros da Rosa"
  * on date 04/12/2023
  */
-public class EstudantesMatriculados {
+
+@Entity
+public class EstudantesMatriculados implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate dataMatricula;
 
