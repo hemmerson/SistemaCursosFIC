@@ -1,8 +1,10 @@
 package com.example.SistemaCursosFIC.config;
 
 import com.example.SistemaCursosFIC.entities.Celular;
+import com.example.SistemaCursosFIC.entities.Curso;
 import com.example.SistemaCursosFIC.entities.Estudante;
 import com.example.SistemaCursosFIC.repositories.CelularRepository;
+import com.example.SistemaCursosFIC.repositories.CursoRepository;
 import com.example.SistemaCursosFIC.repositories.EstudanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CelularRepository celularRepository;
 
+    @Autowired
+    private CursoRepository cursoRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -31,6 +36,11 @@ public class TestConfig implements CommandLineRunner {
 
         Celular c1 = new Celular("999886655", e1);
         Celular c2 = new Celular("999872121", e2);
+
+        Curso curso1 = new Curso("Sistemas para Internet", "1940", "Curso de Sistemas para Internet de Palmas");
+        Curso curso2 = new Curso("Enhenharia Civil", "2540", "Curso de Engenharia Civil de Palmas");
+
+        cursoRepository.saveAll(Arrays.asList(curso1,curso2));
 
         estudanteRepository.saveAll(Arrays.asList(e1,e2));
         celularRepository.saveAll(Arrays.asList(c1,c2));

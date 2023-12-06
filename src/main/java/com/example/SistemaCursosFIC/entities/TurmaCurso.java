@@ -1,12 +1,21 @@
 package com.example.SistemaCursosFIC.entities;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * @author "Hemmerson Luis Barros da Rosa"
  * on date 03/12/2023
  */
-public class TurmaCurso {
+@Entity
+@Table(name = "tb_turma_curso")
+public class TurmaCurso implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String local;
     private Integer vagas;
@@ -15,6 +24,9 @@ public class TurmaCurso {
     private LocalDate fimAulas;
     private LocalDate inicioMatriculas;
     private LocalDate fimMatriculas;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
     public TurmaCurso() {
