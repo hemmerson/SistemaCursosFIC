@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author "Hemmerson Luis Barros da Rosa"
@@ -24,6 +27,12 @@ public class TurmaCurso implements Serializable {
     private LocalDate fimAulas;
     private LocalDate inicioMatriculas;
     private LocalDate fimMatriculas;
+
+    @ManyToMany
+    @JoinTable(name = "turmas_matriculados",
+            joinColumns = @JoinColumn(name = "turma_id"),
+            inverseJoinColumns = @JoinColumn(name = "matriculado_id"))
+    private List<EstudantesMatriculados> matriculados = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
@@ -135,5 +144,26 @@ public class TurmaCurso implements Serializable {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public List<EstudantesMatriculados> getMatriculados() {
+        return matriculados;
+    }
+
+    public void adicionaMatriculados(EstudantesMatriculados matriculado) {
+        this.matriculados.add(matriculado);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TurmaCurso that = (TurmaCurso) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

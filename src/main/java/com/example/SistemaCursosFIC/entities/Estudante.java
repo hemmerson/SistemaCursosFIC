@@ -1,5 +1,6 @@
 package com.example.SistemaCursosFIC.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -28,6 +29,10 @@ public class Estudante implements Serializable {
 
     @OneToMany(mappedBy = "estudante")
     private List<Celular> celulares = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "estudanteMatriculado")
+    private List<EstudantesMatriculados> matriculas = new ArrayList<>();
 
     public Estudante() {
     }
@@ -99,6 +104,14 @@ public class Estudante implements Serializable {
 
     public List<Celular> getCelulares() {
         return celulares;
+    }
+
+    public List<EstudantesMatriculados> getMatriculas() {
+        return matriculas;
+    }
+
+    public void adicionaMatriculas(EstudantesMatriculados matriculas) {
+        this.matriculas.add(matriculas);
     }
 
     @Override
