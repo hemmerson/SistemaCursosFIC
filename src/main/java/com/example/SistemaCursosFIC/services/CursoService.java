@@ -22,4 +22,16 @@ public class CursoService {
         Optional<Curso> obj = repository.findById(id);
         return obj.get();
     }
+
+    public Curso insert(Curso obj){
+        validarCurso(obj);
+        return repository.save(obj);
+    }
+
+
+    private void validarCurso(Curso curso) {
+        if (curso.getNome() == null || curso.getCargaHoraria() == null || curso.getDescricao() == null) {
+            throw new IllegalArgumentException("Todos os campos do curso são obrigatórios.");
+        }
+    }
 }

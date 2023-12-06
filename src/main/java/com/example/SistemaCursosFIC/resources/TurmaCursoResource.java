@@ -4,10 +4,7 @@ import com.example.SistemaCursosFIC.entities.TurmaCurso;
 import com.example.SistemaCursosFIC.services.TurmaCursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,12 @@ public class TurmaCursoResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<TurmaCurso> findById(@PathVariable Long id){
         TurmaCurso obj = service.findById(id);
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TurmaCurso> updateVagas(@PathVariable Long id, @RequestBody TurmaCurso obj) {
+        obj = service.updateVagas(id, obj);
         return ResponseEntity.ok().body(obj);
     }
 }

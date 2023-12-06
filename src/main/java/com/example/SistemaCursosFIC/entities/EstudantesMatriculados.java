@@ -72,6 +72,9 @@ public class EstudantesMatriculados implements Serializable {
     }
 
     public void adicionaTurmas(TurmaCurso turma) {
+        if (turma.getVagasDisponiveis() <= 0)
+            throw new IllegalArgumentException("Vagas esgotadas para a turma.");
+        turma.setVagasDisponiveis(turma.getVagasDisponiveis() - 1);
         this.turmas.add(turma);
     }
 
