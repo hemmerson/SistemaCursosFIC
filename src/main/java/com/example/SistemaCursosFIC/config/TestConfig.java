@@ -3,9 +3,11 @@ package com.example.SistemaCursosFIC.config;
 import com.example.SistemaCursosFIC.entities.Celular;
 import com.example.SistemaCursosFIC.entities.Curso;
 import com.example.SistemaCursosFIC.entities.Estudante;
+import com.example.SistemaCursosFIC.entities.TurmaCurso;
 import com.example.SistemaCursosFIC.repositories.CelularRepository;
 import com.example.SistemaCursosFIC.repositories.CursoRepository;
 import com.example.SistemaCursosFIC.repositories.EstudanteRepository;
+import com.example.SistemaCursosFIC.repositories.TurmaCursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CursoRepository cursoRepository;
 
+    @Autowired
+    private TurmaCursoRepository turmaRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,7 +45,13 @@ public class TestConfig implements CommandLineRunner {
         Curso curso1 = new Curso("Sistemas para Internet", "1940", "Curso de Sistemas para Internet de Palmas");
         Curso curso2 = new Curso("Enhenharia Civil", "2540", "Curso de Engenharia Civil de Palmas");
 
+        TurmaCurso tc1 = new TurmaCurso("Palmas",40,40,LocalDate.parse("2024-01-17"),LocalDate.parse("2024-07-15"),
+                LocalDate.parse("2024-01-03"),LocalDate.parse("2024-01-15"),curso1);
+        TurmaCurso tc2 = new TurmaCurso("Palmas",40,40,LocalDate.parse("2024-01-17"),LocalDate.parse("2024-07-15"),
+                LocalDate.parse("2024-01-03"),LocalDate.parse("2024-01-15"),curso2);
+
         cursoRepository.saveAll(Arrays.asList(curso1,curso2));
+        turmaRepository.saveAll(Arrays.asList(tc1,tc2));
 
         estudanteRepository.saveAll(Arrays.asList(e1,e2));
         celularRepository.saveAll(Arrays.asList(c1,c2));

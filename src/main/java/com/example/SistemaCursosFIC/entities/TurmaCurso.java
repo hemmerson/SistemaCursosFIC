@@ -32,8 +32,7 @@ public class TurmaCurso implements Serializable {
     public TurmaCurso() {
     }
 
-    public TurmaCurso(Long id, String local, Integer vagas, Integer vagasDisponiveis, LocalDate inicioAulas, LocalDate fimAulas, LocalDate inicioMatriculas, LocalDate fimMatriculas) {
-        this.id = id;
+    public TurmaCurso(String local, Integer vagas, Integer vagasDisponiveis, LocalDate inicioAulas, LocalDate fimAulas, LocalDate inicioMatriculas, LocalDate fimMatriculas) {
         this.local = local;
         this.vagas = vagas;
         this.vagasDisponiveis = vagasDisponiveis;
@@ -45,6 +44,17 @@ public class TurmaCurso implements Serializable {
 
     public TurmaCurso(Long id, String local, Integer vagas, Integer vagasDisponiveis, LocalDate inicioAulas, LocalDate fimAulas, LocalDate inicioMatriculas, LocalDate fimMatriculas, Curso curso) {
         this.id = id;
+        this.local = local;
+        this.vagas = vagas;
+        this.vagasDisponiveis = vagasDisponiveis;
+        this.inicioAulas = inicioAulas;
+        this.fimAulas = fimAulas;
+        this.inicioMatriculas = inicioMatriculas;
+        this.fimMatriculas = fimMatriculas;
+        this.curso = curso;
+    }
+
+    public TurmaCurso(String local, Integer vagas, Integer vagasDisponiveis, LocalDate inicioAulas, LocalDate fimAulas, LocalDate inicioMatriculas, LocalDate fimMatriculas, Curso curso) {
         this.local = local;
         this.vagas = vagas;
         this.vagasDisponiveis = vagasDisponiveis;
