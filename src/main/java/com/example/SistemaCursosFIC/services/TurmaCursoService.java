@@ -50,7 +50,7 @@ public class TurmaCursoService {
     }
 
     private void updateVagasDisponiveis(TurmaCurso entity, TurmaCurso obj) {
-        entity.setVagasDisponiveis(obj.getVagasDisponiveis());
+        entity.setVagasDisponiveis(obj.getVagasDisponiveis() - 1);
     }
 
 
@@ -61,6 +61,16 @@ public class TurmaCursoService {
                 || turma.getFimMatriculas() == null) {
             throw new IllegalArgumentException("Todos os campos do curso são obrigatórios.");
         }
+
+        if (turma.getInicioMatriculas().isAfter(turma.getFimMatriculas()))
+            throw new IllegalArgumentException("A data de inicio das matriculas deve ser posterior ao fim das matriculas");
+
+        if (turma.getInicioAulas().isAfter(turma.getFimAulas()))
+            throw new IllegalArgumentException("A data de inicio das aulas deve ser posterior ao fim das aulas");
+
+        if (turma.getFimMatriculas().isAfter(turma.getInicioAulas()) || turma.getFimMatriculas().isAfter(turma.getInicioAulas()))
+            throw new IllegalArgumentException("O período de matriculas deve ser anterior ao início das aulas");
+
     }
 
 }

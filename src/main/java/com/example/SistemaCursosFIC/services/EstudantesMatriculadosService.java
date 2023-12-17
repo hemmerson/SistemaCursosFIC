@@ -29,13 +29,13 @@ public class EstudantesMatriculadosService {
     }
 
     public EstudantesMatriculados insert(EstudantesMatriculados obj){
-        validarMatricula(obj);
         return repository.save(obj);
     }
 
-    private void validarMatricula(EstudantesMatriculados matriculados) {
-//        if (matriculados.getTurmas()) {
-//            throw new IllegalArgumentException("Todos os campos do curso são obrigatórios.");
-//        }
+    public List<EstudantesMatriculados> listaEstudantes(EstudantesMatriculados obj){
+        if (obj.getTurma().getMatriculados().isEmpty())
+            throw new IllegalArgumentException("A lista de estudantes está vazia!");
+        return obj.getTurma().getMatriculados();
     }
+
 }

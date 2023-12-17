@@ -164,4 +164,11 @@ public class TurmaCurso implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public List<LocalDate> getPeriodoMatriculas() {
+        List<LocalDate> periodoMatriculas = new ArrayList<>();
+        periodoMatriculas.add(this.inicioMatriculas);
+        periodoMatriculas.add(this.fimMatriculas);
+        return periodoMatriculas;
+    }
 }
