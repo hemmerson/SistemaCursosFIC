@@ -1,6 +1,7 @@
 package com.example.SistemaCursosFIC.services;
 
 import com.example.SistemaCursosFIC.entities.Estudante;
+import com.example.SistemaCursosFIC.repositories.CelularRepository;
 import com.example.SistemaCursosFIC.repositories.EstudanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class EstudanteService {
 
     @Autowired
     private EstudanteRepository repository;
+
+    @Autowired
+    private CelularRepository celularRepository;
 
     public List<Estudante> findAll(){
         return repository.findAll();

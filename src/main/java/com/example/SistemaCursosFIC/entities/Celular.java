@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * @author "Hemmerson Luis Barros da Rosa"
@@ -12,7 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_celular")
-public class Celular implements Serializable {
+public class Celular implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -27,9 +27,4 @@ public class TurmaCursoResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<TurmaCurso> updateVagas(@PathVariable Long id, @RequestBody TurmaCurso obj) {
-        obj = service.updateVagas(id, obj);
-        return ResponseEntity.ok().body(obj);
-    }
 }

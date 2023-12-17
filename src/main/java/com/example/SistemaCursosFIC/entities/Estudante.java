@@ -46,6 +46,15 @@ public class Estudante implements Serializable {
         this.emailInstitucional = emailInstitucional;
     }
 
+    public Estudante(String nome, String matricula, LocalDate dataNascimento, String endereco, String emailInstitucional, List<Celular> celulares) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.emailInstitucional = emailInstitucional;
+        this.celulares = celulares;
+    }
+
     public Estudante(String nome, String matricula, LocalDate dataNascimento, String endereco, String emailInstitucional) {
         this.nome = nome;
         this.matricula = matricula;

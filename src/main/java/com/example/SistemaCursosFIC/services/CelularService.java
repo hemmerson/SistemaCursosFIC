@@ -1,6 +1,7 @@
 package com.example.SistemaCursosFIC.services;
 
 import com.example.SistemaCursosFIC.entities.Celular;
+import com.example.SistemaCursosFIC.entities.Estudante;
 import com.example.SistemaCursosFIC.repositories.CelularRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class CelularService {
     public Celular findById(Long id){
         Optional<Celular> obj = repository.findById(id);
         return obj.get();
+    }
+
+    public Celular insert(Celular obj){
+        return repository.save(obj);
     }
 }
