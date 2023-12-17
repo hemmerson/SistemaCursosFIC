@@ -100,8 +100,8 @@ public class TurmaCurso implements Serializable {
         return vagasDisponiveis;
     }
 
-    public void setVagasDisponiveis(Integer vagasDisponiveis) {
-        this.vagasDisponiveis = vagasDisponiveis;
+    public void setVagasDisponiveis() {
+        this.vagasDisponiveis -= 1;
     }
 
     public LocalDate getInicioAulas() {

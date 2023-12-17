@@ -39,22 +39,6 @@ public class TurmaCursoService {
         return repository.save(obj);
     }
 
-    public TurmaCurso updateVagas(Long id, TurmaCurso obj) {
-        try {
-            TurmaCurso entity = repository.getReferenceById(id);
-            updateVagasDisponiveis(entity, obj);
-            return repository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new IllegalArgumentException("Turma não encontrada.");
-        }
-    }
-
-    private void updateVagasDisponiveis(TurmaCurso entity, TurmaCurso obj) {
-        entity.setVagasDisponiveis(obj.getVagasDisponiveis() - 1);
-    }
-
-
-
     private void validarTurma(TurmaCurso turma) {
         if (turma.getLocal() == null || turma.getVagas() == null || turma.getVagasDisponiveis() == null
         || turma.getInicioAulas() == null || turma.getFimAulas() == null || turma.getInicioMatriculas() == null

@@ -29,13 +29,22 @@ public class EstudantesMatriculadosService {
     }
 
     public EstudantesMatriculados insert(EstudantesMatriculados obj){
+        obj.getTurma().setVagasDisponiveis();
         return repository.save(obj);
     }
 
-    public List<EstudantesMatriculados> listaEstudantes(EstudantesMatriculados obj){
-        if (obj.getTurma().getMatriculados().isEmpty())
-            throw new IllegalArgumentException("A lista de estudantes está vazia!");
-        return obj.getTurma().getMatriculados();
+    public List<EstudantesMatriculados> listaEstudantesMatriculados(TurmaCurso turma){
+        List<EstudantesMatriculados> lista = repository.findAll();
+        for (EstudantesMatriculados matriculados : lista){
+            if (matriculados.getTurma() == turma){
+                if (matriculados.getTurma().getMatriculados().isEmpty())
+                    throw new IllegalArgumentException("A lista de estudantes está vazia!");
+                else{
+                    return matriculados.getTurma().getMatriculados();
+                }
+            }
+        }
+        throw new IllegalArgumentException("Turma não encontrada!");
     }
 
 }
