@@ -34,11 +34,4 @@ public class EstudantesMatriculadosResource {
         EstudantesMatriculados obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-
-    @GetMapping(value = "/listamatriculados/{id}")
-    public ResponseEntity<List<EstudantesMatriculados>> listaMatriculados(@PathVariable Long id){
-        TurmaCurso turma = turmaService.findById(id);
-        List<EstudantesMatriculados> list = service.listaEstudantesMatriculados(turma);
-        return ResponseEntity.ok().body(list);
-    }
 }

@@ -25,6 +25,14 @@ public class EstudantesMatriculadosPK implements Serializable {
     @JoinColumn(name = "turma_id")
     private TurmaCurso turma;
 
+    public EstudantesMatriculadosPK() {
+    }
+
+    public EstudantesMatriculadosPK(Estudante estudante, TurmaCurso turma) {
+        this.estudante = estudante;
+        this.turma = turma;
+    }
+
     public Estudante getEstudante() {
         return estudante;
     }

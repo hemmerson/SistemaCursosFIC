@@ -1,11 +1,10 @@
 package com.example.SistemaCursosFIC;
 
-import com.example.SistemaCursosFIC.entities.Celular;
-import com.example.SistemaCursosFIC.entities.Curso;
-import com.example.SistemaCursosFIC.entities.Estudante;
-import com.example.SistemaCursosFIC.entities.TurmaCurso;
+import com.example.SistemaCursosFIC.entities.*;
+import com.example.SistemaCursosFIC.pk.EstudantesMatriculadosPK;
 import com.example.SistemaCursosFIC.services.CursoService;
 import com.example.SistemaCursosFIC.services.EstudanteService;
+import com.example.SistemaCursosFIC.services.EstudantesMatriculadosService;
 import com.example.SistemaCursosFIC.services.TurmaCursoService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,6 +27,9 @@ class SistemaCursosFicApplicationTests {
 
 	@Autowired
 	private TurmaCursoService turmaCursoService;
+
+	@Autowired
+	private EstudantesMatriculadosService matriculadosCursoService;
 
 
 	//TESTES PARA ESTUDANTE
@@ -135,5 +137,34 @@ class SistemaCursosFicApplicationTests {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> turmaCursoService.insert(turma));
 	}
 
-	
+	@Test
+	public void listarTurmaCursoComMatriculadosVazia() {
+		// Testa se é possível listar uma TurmaCurso sem estudates matriculados
+		String local = "Palmas/TO";
+		LocalDate inicioMatriculas = LocalDate.parse("2023-06-20");
+		LocalDate fimMatriculas = LocalDate.parse("2023-07-20");
+		LocalDate inicioAulas = LocalDate.parse("2023-08-01");
+		LocalDate fimAulas = LocalDate.parse("2023-12-15");
+		TurmaCurso turma = new TurmaCurso(local,40,40,inicioAulas,fimAulas,inicioMatriculas,fimMatriculas);
+		TurmaCurso novaTurma = turmaCursoService.insert(turma);
+		Assertions.assertThrows(RuntimeException.class, () -> turmaCursoService.listaEstudantesMatriculados(novaTurma.getId()));
+	}
+
+	@Test
+	public void cadastrarEstudanteCursoVagasIndisponíveis() {
+		// Testa se é possível listar uma TurmaCurso sem estudates matriculados
+		String local = "Palmas/TO";
+		LocalDate inicioMatriculas = LocalDate.parse("2023-06-20");
+		LocalDate fimMatriculas = LocalDate.parse("2023-07-20");
+		LocalDate inicioAulas = LocalDate.parse("2023-08-01");
+		LocalDate fimAulas = LocalDate.parse("2023-12-15");
+		TurmaCurso turma = new TurmaCurso(local,40,0,inicioAulas,fimAulas,inicioMatriculas,fimMatriculas);
+		TurmaCurso novaTurma = turmaCursoService.insert(turma);
+
+		EstudantesMatriculados matriculados = new EstudantesMatriculados();
+
+		// Verifique se o método podeMatricular retorna false,
+		// caso retorne, não vai conseguir inserir o estudante à turma, retornando NULL
+		Assertions.assertThrows(NullPointerException.class, () -> matriculados.setTurma(novaTurma));
+	}
 }
